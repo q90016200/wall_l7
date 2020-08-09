@@ -37,4 +37,12 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * 獲取 line notify access token
+     */
+    public function social()
+    {
+        return $this->hasOne('App\Models\UsersSocial');
+    }
 }

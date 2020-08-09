@@ -27,3 +27,14 @@ Route::prefix('auth')->group(function () {
     });
 
 });
+
+Route::group([
+    'middleware' => 'api',
+    'prefix' => 'lineNotify'
+], function () {
+    Route::middleware('auth:sanctum')->group(function () {
+        Route::get('auth', 'LineNotifyController@auth');
+        Route::post('message', 'LineNotifyController@message');
+    });
+    Route::post('callback', 'LineNotifyController@callback');
+});

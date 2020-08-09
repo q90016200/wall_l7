@@ -23,6 +23,13 @@ class AuthController extends Controller
             throw new AuthenticationException();
         }
 
+        if (Auth::check()) {
+
+        } else {
+            // 撤销所有令牌...
+            $user->tokens()->delete();
+        }
+
         return response([
             'access_token' => $user->createToken("token-name")->plainTextToken,
         ]);
