@@ -39,7 +39,7 @@ class User extends Authenticatable
     ];
 
     /**
-     * 獲取 line notify access token
+     * 獲取 第三方服務 token , ex :line notify access token
      */
     public function social()
     {

@@ -38,3 +38,14 @@ Route::group([
     });
     Route::post('callback', 'LineNotifyController@callback');
 });
+
+
+Route::group([
+    'middleware' => 'api',
+    'prefix' => 'posts',
+], function () {
+    Route::middleware('auth:sanctum')->group(function () {
+        Route::post('/', 'PostController@store');
+    });
+});
+

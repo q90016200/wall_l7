@@ -2,7 +2,6 @@
 namespace App\Service;
 
 use Log;
-use Illuminate\Http\Request;
 use Exception;
 
 use App\Models\User;

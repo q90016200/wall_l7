@@ -50,4 +50,11 @@ class AuthController extends Controller
         //     ], 400);
         // }
     }
+
+    public function logoutResponse() {
+        return response()->json([
+            "code" => 400,
+            "message" => "user not logined"
+        ], 400);
+    }
 }
