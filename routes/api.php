@@ -46,6 +46,7 @@ Route::group([
 ], function () {
     Route::middleware('auth:sanctum')->group(function () {
         Route::post('/', 'PostController@store');
+        Route::get('/{postId}', 'PostController@show');
     });
 });
 

@@ -13,7 +13,7 @@ class PostRepository
         $this->postModel = $post;
     }
 
-    // posts 新增紀錄
+    // table posts 新增紀錄
     public function create($user_id, $data) {
         $this->postModel::create([
             "author" => $user_id,
@@ -21,4 +21,10 @@ class PostRepository
             "ip" => $data["ip"]
         ]);
     }
+
+    // 依照 posts table id 取得資料
+    public function getPostById($postId) {
+        return $this->postModel::where('id', $postId)->first();
+    }
+
 }

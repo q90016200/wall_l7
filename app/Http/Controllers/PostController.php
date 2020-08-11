@@ -74,7 +74,12 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        //
+        $post = $this->postService->getPost($id);
+        // Log::info(json_encode($post));
+        return response()->json([
+            "code" => 0,
+            "data" => $post,
+        ], 200);
     }
 
     /**

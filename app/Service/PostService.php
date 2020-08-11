@@ -26,7 +26,8 @@ class PostService
     }
 
     public function getPost($postId) {
-
+        $post = $this->postRepository->getPostById($postId);
+        return $post;
     }
 
 

@@ -23,9 +23,7 @@ class AuthController extends Controller
             throw new AuthenticationException();
         }
 
-        if (Auth::check()) {
-
-        } else {
+        if (!Auth::check()) {
             // 撤销所有令牌...
             $user->tokens()->delete();
         }
@@ -36,19 +34,12 @@ class AuthController extends Controller
     }
 
     public function logout() {
-        // if (Auth::check()) {
-            Auth::user()->tokens()->delete();
+        Auth::user()->tokens()->delete();
 
-            return response([
-                "code" => 0,
-                "message" => "logout success"
-            ], 204);
-        // } else {
-    //     return response([
-        //         "code" => 400,
-        //         "message" => "user not logined"
-        //     ], 400);
-        // }
+        return response([
+            "code" => 0,
+            "message" => "logout success"
+        ], 204);
     }
 
     public function logoutResponse() {
