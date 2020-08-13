@@ -14,12 +14,16 @@ class PostRepository
     }
 
     // table posts 新增紀錄
-    public function create($user_id, $data) {
-        $this->postModel::create([
-            "author" => $user_id,
-            "content" => $data["content"],
-            "ip" => $data["ip"]
-        ]);
+    public function create($user_id, $request) {
+        $this->postModel->user_id = $user_id;
+        $this->postModel->content = $request->input("content");
+        $this->postModel->ip = $request->getClientIp();
+
+        if (!$this->postModel->save()) {
+            return false;
+        }
+
+        return $this->postModel;
     }
 
     // 依照 posts table id 取得資料

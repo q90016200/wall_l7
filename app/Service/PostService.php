@@ -13,11 +13,16 @@ class PostService
         $this->postRepository = $postRepository;
     }
 
-    public function createPost($user_id, $data) {
-        $this->postRepository->create($user_id, $data);
+    public function createPost($user_id, $request) {
+        $createPost = $this->postRepository->create($user_id, $request);
+        if (!$createPost) {
+            throw new Exception(__FUNCTION__." fail");
+        }
+
+        return $createPost;
     }
 
-    public function editPost($postId, $data = []) {
+    public function editPost($postId, $request) {
 
     }
 

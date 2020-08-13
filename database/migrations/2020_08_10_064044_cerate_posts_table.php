@@ -15,9 +15,10 @@ class CeratePostsTable extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('author')->index();
-            $table->text('content');
 
+            $table->foreignId('user_id')->references('id')->on('users');
+
+            $table->text('content');
             $table->integer('comment_count')->default(0);
             $table->integer('image_count')->default(0);
             $table->integer('like_count')->default(0);

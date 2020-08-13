@@ -8,9 +8,11 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 
 use App\Service\PostService;
+use App\Traits\ResponseTrait;
 
 class PostController extends Controller
 {
+    use ResponseTrait;
     protected $postService;
 
     public function __construct(PostService $postService) {
@@ -43,27 +45,24 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        $input = $request->only(['content']);
-
+    public function store(Request $request) {
         # 認證欄位
-        $validator = Validator::make($input, [
+        $validator = Validator::make($request->all(), [
             'content' => 'required|string',
         ]);
         if ($validator->fails()) {
-            $this->errResponse("content paramas field required");
+            return $this->errorResponse([
+                "message" => $validator->errors()
+            ]);
         }
 
-        $this->postService->createPost(Auth::id(), [
-            "content" => $input["content"],
-            "ip" => $request->getClientIp(),
-        ]);
+        try {
+            $createPost = $this->postService->createPost(Auth::id(), $request);
+        } catch (\Throwable $th) {
+            return $this->failResponse(null, $th->getMessage(), $th);
+        }
 
-        return response()->json([
-            "code" => 0,
-            "message" => "post created success"
-        ]);
+        return $this->successResponse($createPost, "post created success");
     }
 
     /**
@@ -72,10 +71,10 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
+    public function show($id) {
         $post = $this->postService->getPost($id);
         // Log::info(json_encode($post));
+
         return response()->json([
             "code" => 0,
             "data" => $post,
@@ -88,9 +87,8 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        //
+    public function edit($id) {
+        # 使用 vue spa 製作該服務，因此不需使用該 function
     }
 
     /**
@@ -100,9 +98,18 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
+    public function update(Request $request, $postId) {
+        $user = Auth::user();
+
+        // 判斷用戶是否有權限進行修改
+        $updatePermission = $user->can("update", $this->postService->getPost($postId));
+        if (!$updatePermission) {
+            return $this->errorResponse(null, "You do not own this post.");
+        }
+
+
+
+
     }
 
     /**
@@ -111,18 +118,16 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($postId)
     {
-        //
+        $user = Auth::user();
+        // 判斷用戶是否有權限進行刪除
+        $deletePermission = $user->can("delete", $this->postService->getPost($postId));
+        if (!$deletePermission) {
+            return $this->errorResponse(null, "You do not own this post.");
+        }
+
+
     }
 
-    private function errResponse($message = "") {
-        return response()->json(
-                [
-                    'code' => 400,
-                    'message' => $message,
-
-                ], 400
-            );
-    }
 }

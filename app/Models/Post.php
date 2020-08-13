@@ -13,8 +13,7 @@ class Post extends Model
      *
      * @var array
      */
-    protected $fillable = ['author', 'content', 'comment_count', 'image_count', 'like_count', 'preview_link', 'ip'];
-
+    protected $fillable = ['user_id', 'content', 'comment_count', 'image_count', 'like_count', 'preview_link', 'ip'];
 
 
 }
