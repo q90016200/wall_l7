@@ -31,4 +31,26 @@ class PostRepository
         return $this->postModel::where('id', $postId)->first();
     }
 
+    public function update($postId, $request) {
+        $post = $this->postModel::where("id", $postId)->first();
+        $post->content = $request->input("content");
+        $post->ip = $request->getClientIp();
+
+        if (!$post->save()) {
+            return false;
+        }
+
+        return $post;
+    }
+
+    public function delete($postId) {
+        $post = $this->postModel::where("id", $postId)->first();
+
+        if (!$post->delete()) {
+            return false;
+        }
+        return true;
+
+    }
+
 }

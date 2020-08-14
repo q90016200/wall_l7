@@ -107,8 +107,23 @@ class PostController extends Controller
             return $this->errorResponse(null, "You do not own this post.");
         }
 
+        # 認證欄位
+        $validator = Validator::make($request->all(), [
+            'content' => 'required|string',
+        ]);
+        if ($validator->fails()) {
+            return $this->errorResponse([
+                "message" => $validator->errors()
+            ]);
+        }
 
+        try {
+            $updatePost = $this->postService->updatePost($postId, $request);
+        } catch (\Throwable $th) {
+            return $this->failResponse(null, $th->getMessage(), $th);
+        }
 
+        return $this->successResponse($updatePost, "post updated success");
 
     }
 
@@ -127,7 +142,13 @@ class PostController extends Controller
             return $this->errorResponse(null, "You do not own this post.");
         }
 
+        try {
+            $deletePost = $this->postService->deletePost($postId);
+        } catch (\Throwable $th) {
+            return $this->failResponse(null, $th->getMessage(), $th);
+        }
 
+        return $this->successResponse(null, "post deleted success");
     }
 
 }

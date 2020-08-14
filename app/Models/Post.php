@@ -15,5 +15,9 @@ class Post extends Model
      */
     protected $fillable = ['user_id', 'content', 'comment_count', 'image_count', 'like_count', 'preview_link', 'ip'];
 
+    // 獲取文章的用戶
+    public function user() {
+        return $this->hasOne('App\Models\User');
+    }
 
 }

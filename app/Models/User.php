@@ -45,4 +45,12 @@ class User extends Authenticatable
     {
         return $this->hasOne('App\Models\UsersSocial');
     }
+
+    /**
+     * 用戶文章
+     */
+    public function posts()
+    {
+        return $this->hasMany('App\Models\Posts');
+    }
 }

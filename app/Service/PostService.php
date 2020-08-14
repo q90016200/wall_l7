@@ -22,13 +22,22 @@ class PostService
         return $createPost;
     }
 
-    public function editPost($postId, $request) {
+    public function updatePost($postId, $request) {
+        $updatePost = $this->postRepository->update($postId, $request);
+        if (!$updatePost) {
+            throw new Exception(__FUNCTION__." fail");
+        }
 
+        return $updatePost;
     }
 
     public function deletePost($postId) {
-
+        $deletePost = $this->postRepository->delete($postId);
+        if (!$deletePost) {
+            throw new Exception(__FUNCTION__." fail");
+        }
     }
+
 
     public function getPost($postId) {
         $post = $this->postRepository->getPostById($postId);
