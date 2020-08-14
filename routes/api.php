@@ -44,9 +44,9 @@ Route::group([
     'middleware' => 'api',
     'prefix' => 'posts',
 ], function () {
+    Route::get('/{postId}', 'PostController@show');
     Route::middleware('auth:sanctum')->group(function () {
         Route::post('/', 'PostController@store');
-        Route::get('/{postId}', 'PostController@show');
         Route::put('/{postId}', 'PostController@update');
         Route::delete('/{postId}', 'PostController@destroy');
     });
