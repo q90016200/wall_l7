@@ -17,7 +17,7 @@ class Post extends Model
 
     // 獲取文章的用戶
     public function user() {
-        return $this->hasOne('App\Models\User');
+        return $this->belongsTo('App\Models\User');
     }
 
 }
