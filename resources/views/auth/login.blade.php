@@ -1,6 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
+{{-- <script>
+function func(event){
+    event.preventDefault();
+}
+</script> --}}
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -9,11 +14,6 @@
 
                 <div class="card-body">
                     {{-- <form method="POST" action="{{ route('login') }}"> --}}
-                    <script>
-                    function func(event){
-                        event.preventDefault();
-                    }
-                    </script>
                     <form method="POST" >
                         @csrf
 
@@ -57,12 +57,13 @@
                             </div>
                         </div>
 
-                        <div class="form-group row mb-0">
+                        <div class="form-group row mb-0" id="login-div">
                             <div class="col-md-8 offset-md-4">
                                 {{-- <button type="submit" class="btn btn-primary"> --}}
-                                <button type="submit" class="btn btn-primary" onclick="func(event)">
+                                {{-- <button type="submit" class="btn btn-primary" onclick="func(event)"> --}}
+                                <a class="btn btn-primary" v-on:click.prevent="onLogin($event)">
                                     {{ __('Login') }}
-                                </button>
+                                </a>
 
                                 @if (Route::has('password.request'))
                                     <a class="btn btn-link" href="{{ route('password.request') }}">

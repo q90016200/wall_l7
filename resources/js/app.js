@@ -29,4 +29,17 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 
 const app = new Vue({
     el: '#app',
+    data: {
+        message: 'Hello Vue.js!'
+    },
+    methods: {
+        onLogin: function (event) {
+            console.log("test login");
+            // alert(event.target.tagName);
+        }
+    },
+    created: function () {
+        // `this` points to the vm instance
+        console.log(this.message)
+    }
 });

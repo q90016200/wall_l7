@@ -17257,7 +17257,7 @@ return jQuery;
   var undefined;
 
   /** Used as the semantic version number. */
-  var VERSION = '4.17.19';
+  var VERSION = '4.17.20';
 
   /** Used as the size to enable large array optimizations. */
   var LARGE_ARRAY_SIZE = 200;
@@ -32833,7 +32833,7 @@ return jQuery;
      * // => [{ 'a': 4, 'b': 5, 'c': 6 }]
      *
      * // Checking for several possible values
-     * _.filter(users, _.overSome([_.matches({ 'a': 1 }), _.matches({ 'a': 4 })]));
+     * _.filter(objects, _.overSome([_.matches({ 'a': 1 }), _.matches({ 'a': 4 })]));
      * // => [{ 'a': 1, 'b': 2, 'c': 3 }, { 'a': 4, 'b': 5, 'c': 6 }]
      */
     function matches(source) {
@@ -32870,7 +32870,7 @@ return jQuery;
      * // => { 'a': 4, 'b': 5, 'c': 6 }
      *
      * // Checking for several possible values
-     * _.filter(users, _.overSome([_.matchesProperty('a', 1), _.matchesProperty('a', 4)]));
+     * _.filter(objects, _.overSome([_.matchesProperty('a', 1), _.matchesProperty('a', 4)]));
      * // => [{ 'a': 1, 'b': 2, 'c': 3 }, { 'a': 4, 'b': 5, 'c': 6 }]
      */
     function matchesProperty(path, srcValue) {
@@ -49741,7 +49741,19 @@ Vue.component('example-component', __webpack_require__(/*! ./components/ExampleC
  */
 
 var app = new Vue({
-  el: '#app'
+  el: '#app',
+  data: {
+    message: 'Hello Vue.js!'
+  },
+  methods: {
+    onLogin: function onLogin(event) {
+      console.log("test login"); // alert(event.target.tagName);
+    }
+  },
+  created: function created() {
+    // `this` points to the vm instance
+    console.log(this.message);
+  }
 });
 
 /***/ }),
@@ -49878,8 +49890,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/q90016200/code/wall_l7/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Users/q90016200/code/wall_l7/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Users/q90016200/vhost/wall_l7/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Users/q90016200/vhost/wall_l7/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
