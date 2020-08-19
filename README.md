@@ -55,7 +55,7 @@ LINE_NOTIFY_SECRET_KEY=
 LINE_NOTIFY_CALLBACK_URL=http://localhost/api/lineNotify/callback
 
 ```
-因使用了 Laravel Sanctum 內的 SPA 认证 `.env` 需添加 SANCTUM_STATEFUL_DOMAINS 內需添加使用的 domain
+因使用了 (Laravel Sanctum 內的 SPA 认证)[https://learnku.com/docs/laravel/7.x/sanctum/7510#spa-authentication] `.env` 需添加 SANCTUM_STATEFUL_DOMAINS 內需添加使用的 domain
 example:
 ```
 SANCTUM_STATEFUL_DOMAINS=localhost,127.0.0.1,127.0.0.1:8000,::1,test.wall.com,
