@@ -39,3 +39,17 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     forceTLS: true
 // });
+
+import Vuex from 'vuex'
+import store from './store'
+import VueSweetalert2 from 'vue-sweetalert2';
+
+window.Vue = require('vue');
+Vue.use(Vuex)
+
+
+// If you don't need the styles, do not connect
+// import 'sweetalert2/dist/sweetalert2.min.css';
+
+Vue.use(VueSweetalert2);
+

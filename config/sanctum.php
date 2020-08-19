@@ -44,4 +44,6 @@ return [
         'encrypt_cookies' => App\Http\Middleware\EncryptCookies::class,
     ],
 
+    // default /sanctum/csrf-cookie  更改為 /api/csrf-cookie
+    'prefix' => 'api',
 ];

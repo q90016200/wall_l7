@@ -8,43 +8,64 @@ use Illuminate\Auth\AuthenticationException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 use Log;
+
+use App\Traits\ResponseTrait;
 
 class AuthController extends Controller
 {
+    use ResponseTrait;
+
     public function user(){
-        return Auth::user();
+        // return Auth::user();
+
+        return $this->successResponse(Auth::user());
     }
 
     public function login(Request $request) {
+        # 認證欄位
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|email:rfc,dns|exists:App\Models\User,email',
+            'password' => 'required|string',
+        ]);
+        if ($validator->fails()) {
+            return $this->errorResponse([
+                "message" => $validator->errors()
+            ]);
+        }
+
         $user = User::where('email', $request->email)->first();
 
         if (! $user || ! Hash::check($request->password, $user->password)) {
             throw new AuthenticationException();
         }
 
-        $tokenName = "default";
+        $credentials = $request->only('email', 'password');
 
-        $user->tokens()->where('name', $tokenName)->delete();
+        if (!Auth::attempt($credentials)) {
+            throw new AuthenticationException();
+        }
 
-        return response([
-            'access_token' => $user->createToken($tokenName)->plainTextToken,
+        // # 產生 token
+        // $tokenName = "default";
+
+        // $user->tokens()->where('name', $tokenName)->delete();
+
+        return $this->successResponse([
+            'user' => Auth::user(),
+            // 'access_token' => $user->createToken($tokenName)->plainTextToken,
         ]);
+
     }
 
     public function logout() {
         Auth::user()->tokens()->delete();
 
-        return response([
-            "code" => 0,
-            "message" => "logout success"
-        ], 204);
+        return $this->successResponse(null, 'logout success', 204);
     }
 
     public function logoutResponse() {
-        return response()->json([
-            "code" => 400,
-            "message" => "user not logined"
-        ], 400);
+        return $this->errorResponse(null, "user not logined");
     }
 }

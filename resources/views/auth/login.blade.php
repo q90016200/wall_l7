@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('headerScript')
+<script src="{{ asset('js/app.js') }}" defer></script>
+@endsection
+
 @section('content')
 {{-- <script>
 function func(event){
@@ -13,10 +17,11 @@ function func(event){
                 <div class="card-header">{{ __('Login') }}</div>
 
                 <div class="card-body">
-                    {{-- <form method="POST" action="{{ route('login') }}"> --}}
-                    <form method="POST" >
-                        @csrf
-
+                    <form method="POST" action="{{ route('login') }}">
+                    {{-- <form method="POST" > --}}
+                        {{-- @csrf --}}
+                        <login-component></login-component>
+                        <!--
                         <div class="form-group row">
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
 
@@ -59,11 +64,10 @@ function func(event){
 
                         <div class="form-group row mb-0" id="login-div">
                             <div class="col-md-8 offset-md-4">
-                                {{-- <button type="submit" class="btn btn-primary"> --}}
+                                <button type="submit" class="btn btn-primary">
                                 {{-- <button type="submit" class="btn btn-primary" onclick="func(event)"> --}}
-                                <a class="btn btn-primary" v-on:click.prevent="onLogin($event)">
                                     {{ __('Login') }}
-                                </a>
+                                </button>
 
                                 @if (Route::has('password.request'))
                                     <a class="btn btn-link" href="{{ route('password.request') }}">
@@ -72,6 +76,7 @@ function func(event){
                                 @endif
                             </div>
                         </div>
+                        -->
                     </form>
                 </div>
             </div>
