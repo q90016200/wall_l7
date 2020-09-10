@@ -23,7 +23,7 @@ DB_PASSWORD=admin
 BROADCAST_DRIVER=log
 CACHE_DRIVER=file
 QUEUE_CONNECTION=sync
-SESSION_DRIVER=file
+SESSION_DRIVER=database
 SESSION_LIFETIME=120
 
 REDIS_HOST=172.28.0.4
@@ -117,6 +117,12 @@ server {
 }
 ```
 
+运行迁移
+```
+php artisan migrate
+```
+
+產生前端 js
 ```
 composer install
 
