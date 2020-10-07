@@ -124,7 +124,6 @@ class PostController extends Controller
         }
 
         return $this->successResponse($updatePost, "post updated success");
-
     }
 
     /**
@@ -149,6 +148,13 @@ class PostController extends Controller
         }
 
         return $this->successResponse(null, "post deleted success");
+    }
+
+    # 取得文章列表
+    public function posts(Request $request) {
+        $page = $request->input("page", 0);
+
+        return $this->successResponse(["page" => $page], "post deleted success");
     }
 
 }

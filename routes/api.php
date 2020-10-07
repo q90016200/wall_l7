@@ -44,7 +44,8 @@ Route::group([
     'middleware' => 'api',
     'prefix' => 'posts',
 ], function () {
-    Route::get('/{postId}', 'PostController@show');
+    Route::get('/{postId}', 'PostController@show'); # 特定文章
+    Route::get('/', 'PostController@posts'); # 文章列表
     Route::middleware('auth:sanctum')->group(function () {
         Route::post('/', 'PostController@store');
         Route::put('/{postId}', 'PostController@update');

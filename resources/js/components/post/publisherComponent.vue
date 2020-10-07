@@ -41,7 +41,7 @@
 
 <script>
 import User from "../../apis/User"
-import Post from "../../apis/Post"
+// import Post from "../../apis/Post"
 
 export default {
     name: 'publisher',
@@ -72,9 +72,8 @@ export default {
                 Vue.swal('無輸入內容');
             } else {
                 Post.store(vm.form).then((response) => {
-                    // console.log(response);
-                    // let responseData = response.data.data;
-                    if (response.code == 200) {
+                    let responseData = response.data;
+                    if (responseData.code == 200) {
                         vm.form.content = "";
                     }
                 }).catch((error) => {

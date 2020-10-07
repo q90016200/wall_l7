@@ -4,6 +4,7 @@
 
 <script>
 import publisher from "./components/post/publisherComponent.vue"
+import Post from "./apis/Post"
 
 export default {
     name: 'post',
@@ -22,8 +23,16 @@ export default {
     computed: {
 
     },
-    created : function () {
-
+    created() {
+        let vm = this;
+        console.log("test created");
+        Post.posts().then((response => {
+             console.log(response);
+        })).catch(
+        );
+    },
+    mounted(){
+         console.log("test mounted");
     }
 }
 </script>
