@@ -1,4 +1,4 @@
-**sudo vi /etc/hosts**
+ **sudo vi /etc/hosts**
 ```
 127.0.0.1 test.wall.com
 ```
@@ -63,7 +63,7 @@ SANCTUM_STATEFUL_DOMAINS=localhost,127.0.0.1,127.0.0.1:8000,::1,test.wall.com,
 
 並更改 session 配置文件中用前导. 作为域的前缀：
 ```
-'domain' => '.wall.comm',
+'domain' => '.wall.com',
 ```
 **local nginx config**
 ```
