@@ -1,16 +1,22 @@
 <template>
-    <publisher></publisher>
+    <div>
+        <publisher></publisher>
+
+        <!-- <postContent v-for="item in items" :key="item.id></postContent> -->
+    </div>
 </template>
 
 <script>
 import publisher from "./components/post/publisherComponent.vue"
+import postContent from "./components/post/postContentComponent.vue"
 import Post from "./apis/Post"
 
 export default {
     name: 'post',
     props: [],
     components: {
-        publisher
+        publisher,
+        postContent
     },
     data: function() {
         return {
@@ -27,7 +33,9 @@ export default {
         let vm = this;
         console.log("test created");
         Post.posts({"page":1}).then((response => {
-             console.log(response);
+            console.log(response);
+
+            vm.posts = response.data.data;
         })).catch(
         );
     },

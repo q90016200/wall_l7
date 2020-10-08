@@ -54,7 +54,7 @@ class PostRepository
     }
 
     public function getLatestPost($page = 1) {
-        $post = $this->postModel::orderBy("id", "desc")->paginate(1);
+        $post = $this->postModel::orderBy("id", "desc")->simplePaginate(1);
 
         return $post;
     }
