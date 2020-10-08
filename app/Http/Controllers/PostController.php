@@ -154,7 +154,12 @@ class PostController extends Controller
     public function posts(Request $request) {
         $page = $request->input("page", 0);
 
-        return $this->successResponse(["page" => $page], "post deleted success");
+        $posts = $this->postService->getLatestPost($page);
+
+        return $this->successResponse([
+            "page" => $page,
+            "data" => $posts
+        ]);
     }
 
 }

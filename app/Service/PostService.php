@@ -38,12 +38,14 @@ class PostService
         }
     }
 
-
     public function getPost($postId) {
         $post = $this->postRepository->getPostById($postId);
         return $post;
     }
 
-
+    public function getLatestPost($page = 1) {
+        $post = $this->postRepository->getLatestPost($page);
+        return $post;
+    }
 }
 

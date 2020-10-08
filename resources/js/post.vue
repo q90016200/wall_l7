@@ -26,7 +26,7 @@ export default {
     created() {
         let vm = this;
         console.log("test created");
-        Post.posts().then((response => {
+        Post.posts({"page":1}).then((response => {
              console.log(response);
         })).catch(
         );
