@@ -54,9 +54,17 @@ class PostRepository
     }
 
     public function getLatestPost($page = 1) {
-        $post = $this->postModel::orderBy("id", "desc")->simplePaginate(1);
-
-        return $post;
+        // $posts = $this->postModel::with("test")->orderBy("id", "desc")->simplePaginate(5);
+        $posts = Post::with(['writer'=>function($q){
+            $q->select('id', 'name');
+        }])->get();
+        // foreach ($posts as $k => $post) {
+        //     // dd($post->user());
+        //     $post->user = $post->user()->first();
+        //     unset($post->user->email);
+        //     unset($post->user->email_verified_at);
+        // }
+        return $posts;
     }
 
 }

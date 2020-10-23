@@ -1,8 +1,10 @@
 <template>
     <div>
         <publisher></publisher>
-
-        <!-- <postContent v-for="item in items" :key="item.id></postContent> -->
+        <postContent v-for="post in posts"
+            v-bind:key="post.id"
+            :post="post">
+        </postContent>
     </div>
 </template>
 
@@ -33,9 +35,9 @@ export default {
         let vm = this;
         console.log("test created");
         Post.posts({"page":1}).then((response => {
-            console.log(response);
+            console.log(response.data);
 
-            vm.posts = response.data.data;
+            vm.posts = response.data.data.data.data;
         })).catch(
         );
     },
