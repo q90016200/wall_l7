@@ -41,7 +41,7 @@
 
 <script>
 import User from "../../apis/User"
-// import Post from "../../apis/Post"
+import Post from "../../apis/Post"
 
 export default {
     name: 'publisher',

@@ -2,7 +2,20 @@
 <div>
     <div class="mt-3">
         <div class="bg-white rounded border-bottom">
-            <span>{{ post.id }}</span>
+            <!-- head -->
+            <div class="row mx-2" >
+                <div>{{ post.writer.name }}</div>
+                <div class="col-auto">
+                    <button class="btn bg-white" type="button" id="post_action_men" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    ...
+                    </button>
+                </div>
+            </div>
+            <!-- head end -->
+
+
+
+
         </div>
     </div>
 </div>
@@ -19,6 +32,9 @@ export default {
     },
     methods: {
 
+    },
+    created() {
+        // console.log(this.post);
     }
 }
 </script>

@@ -156,10 +156,7 @@ class PostController extends Controller
 
         $posts = $this->postService->getLatestPost($page);
 
-        return $this->successResponse([
-            "page" => $page,
-            "data" => $posts
-        ]);
+        return $this->successResponse($posts);
     }
 
 }

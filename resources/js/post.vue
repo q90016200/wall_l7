@@ -34,11 +34,10 @@ export default {
     created() {
         let vm = this;
         console.log("test created");
-        Post.posts({"page":1}).then((response => {
-            console.log(response.data);
-
-            vm.posts = response.data.data.data.data;
-        })).catch(
+        Post.posts({"page":1}).then((response) => {
+            // console.log(response.data);
+            vm.posts = response.data.data.data;
+        }).catch(
         );
     },
     mounted(){

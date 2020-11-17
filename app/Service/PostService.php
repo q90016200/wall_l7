@@ -44,8 +44,8 @@ class PostService
     }
 
     public function getLatestPost($page = 1) {
-        $post = $this->postRepository->getLatestPost($page);
-        return $post;
+        $posts = $this->postRepository->getLatestPost($page);
+        return $posts;
     }
 }
 
