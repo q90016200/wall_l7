@@ -44,7 +44,10 @@ class PostService
     }
 
     public function getLatestPost($page = 1) {
-        $posts = $this->postRepository->getLatestPost($page);
+        $posts = $this->postRepository->getLatestPost();
+        foreach ($posts as $k => $v) {
+            $v["content"] = htmlspecialchars($posts[$k]["content"]);
+        }
         return $posts;
     }
 }

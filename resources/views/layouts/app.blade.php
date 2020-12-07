@@ -34,7 +34,7 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="/posts">posts</a>
+                            <a class="nav-link" href="/posts/">posts</a>
                         </li>
                     </ul>
 

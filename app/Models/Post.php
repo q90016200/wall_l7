@@ -18,6 +18,6 @@ class Post extends Model
     // 獲取文章的用戶
     public function writer() {
         return $this->belongsTo('App\Models\User', 'user_id', 'id');
-    }
+}
 
 }

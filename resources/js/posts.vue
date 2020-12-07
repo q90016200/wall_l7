@@ -14,7 +14,7 @@ import postContent from "./components/post/postContentComponent.vue"
 import Post from "./apis/Post"
 
 export default {
-    name: 'post',
+    name: 'posts',
     props: [],
     components: {
         publisher,
@@ -36,7 +36,7 @@ export default {
         console.log("test created");
         Post.posts({"page":1}).then((response) => {
             // console.log(response.data);
-            vm.posts = response.data.data.data;
+            vm.posts = response.data.data;
         }).catch(
         );
     },

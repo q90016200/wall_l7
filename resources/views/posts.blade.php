@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('headerScript')
-<script src="{{ asset('js/postApp.js') }}" defer></script>
+<script src="{{ asset('js/postMain.js') }}" defer></script>
 @endsection
 
 @section('content')
